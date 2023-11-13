@@ -77,14 +77,15 @@ qemu-x86_64
 ```
 
 ### 下载debian系统镜像包并运行内核
+- [debian镜像仓库](https://people.debian.org/~gio/dqib/)
 ```sh
 wget https://gitlab.com/api/v4/projects/giomasce%2Fdqib/jobs/artifacts/master/download?job=convert_amd64-pc -O debian
 
 cd dqib_amd64-pc
 
 # 从readme.txt中复制并修改kernel目标文件
-qemu-system-x86_64 -machine 'pc' -cpu 'Nehalem' -m 1G -drive file=image.qcow2 -device e1000,netdev=net -netdev user,id=net,hostfwd=tcp::2222-:22 -kernel ../build/arch/x86_64/boot/bzImage -initrd initrd -nographic -append "root=LABEL=rootfs console=ttyS0"
+qemu-system-x86_64 -machine 'pc' -cpu 'Nehalem' -m 1G -drive file=image.qcow2 -device e1000,netdev=net -netdev user,id=net,hostfwd=tcp::22222-:22 -kernel ../build/arch/x86_64/boot/bzImage -initrd initrd -nographic -append "root=LABEL=rootfs console=ttyS0"
 ```
 
 最后附上运行界面
-![Alt text](screenshot/runtime.png)
+![Alt text](screenshot/e1-runtime.png)
