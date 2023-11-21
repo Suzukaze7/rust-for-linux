@@ -1,4 +1,4 @@
-### 添加驱动模块本体
+## 添加驱动模块本体
 新建文件`./samples/rust/rust_helloworld.rs`，并写入
 ```rs
 // SPDX-License-Identifier: GPL-2.0
@@ -24,7 +24,7 @@ fn init(_name: &'static CStr, _module: &'static ThisModule) -> Result<Self> {
 }
 ```
 
-### 修改Makefile和Kconfig
+## 修改Makefile和Kconfig
 向`samples/rust/Makefile`添加
 ```makefile
 obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
@@ -69,7 +69,7 @@ help
 
     If unsure, say N.
 ```
-### 修改配置选项并编译
+## 修改配置选项并编译
 注意除了最后一个选项按M表示编译为模块，其余选项按Y
 ```sh
 make ARCH=x86_64 LLVM=1 O=build menuconfig
@@ -82,7 +82,7 @@ Kernel hacking --->
 make ARCH=x86_64 LLVM=1 O=build -j$(nproc)
 ```
 
-### 将.ko文件加载进内核
+## 将.ko文件加载进内核
 编译完成后会出现文件`./build/samples/rust/rust_helloworld.ko`，启动内核虚拟机后，在宿主机scp将该文件传入虚拟机
 ```sh
 scp -P 22222 ./build/samples/rust/rust_helloworld.ko root@localhost:
